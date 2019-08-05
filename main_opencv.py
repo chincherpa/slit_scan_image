@@ -3,9 +3,10 @@ import sys
 import numpy as np
 import cv2
 
-path_to_file = 'input.mp4'
-outputpath = os.path.dirname(os.path.realpath(__file__))
-ouput_filename = os.path.splitext(os.path.basename(path_to_file))[0] + '.png'
+this_path = os.path.dirname(os.path.realpath(__file__))
+filename = 'big_buck_bunny_720p_5mb.mp4'
+path_to_file = os.path.join(this_path, filename)
+output_filename = os.path.splitext(os.path.basename(path_to_file))[0] + '.png'
 
 clip = cv2.VideoCapture(path_to_file)
 first_frame = clip.read()
@@ -32,5 +33,5 @@ while True:
     if key == ord("q"):
         break
 
-output = cv2.imwrite(ouput_filename, img)  #os.path.join(outputpath, ouput_filename), img)
+output = cv2.imwrite(os.path.join(this_path, output_filename), img)
 clip.release()
